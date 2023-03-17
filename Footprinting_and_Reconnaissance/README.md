@@ -26,5 +26,13 @@ Domains and Sub-domains:
 theHarvester:
 > This tool gathers emails, subdomains, hosts, employee names, open ports, and banners from different public sources such as search engines, PGP key servers, and the SHODAN computer database as well as uses Google, Bing, SHODAN, etc.
 
+Deep and Dark Web Searching:
+- [The Hidden Wiki](http://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion/wiki)
+- [FakeID](http://ymvhtqya23wqpez63gyc3ke4svju3mqsby2awnhd3bk2e65izt7baqad.onion) is an onion site for creating fake passports
+- [Cardshop](http://s57divisqlcjtsyutxjz2ww77vlbwpxgodtijcsrgsuts4js5hnxkhqd.onion) is an onion site that sells cards with good balances
+- [ExoneraTor](https://metrics.torproject.org)
+- [OnionLand Search engine](https://onionlandsearchengine.com),
+
+
 
 
