@@ -11,8 +11,20 @@ https://mattw.io/youtube-metadata/
 
 [TinEye Reverse Image Search](https://tineye.com)
 
+FTP Search Engines:
+- https://www.searchftps.net/ 
+- https://www.freewareweb.com/
 
-https://www.searchftps.net/ 
+IoT Search Engines:
+- https://www.shodan.io/
+- https://search.censys.io/
+
+Domains and Sub-domains:
+- https://www.netcraft.com/tools/
+- https://github.com/aboul3la/Sublist3r
+
+theHarvester:
+> This tool gathers emails, subdomains, hosts, employee names, open ports, and banners from different public sources such as search engines, PGP key servers, and the SHODAN computer database as well as uses Google, Bing, SHODAN, etc.
 
 
 
