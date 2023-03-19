@@ -44,6 +44,52 @@ Information from Various Social Networking Sites:
 - [Followerwonk](https://followerwonk.com/analyze)
     > Followerwonk is an online tool that helps you explore and grow your social graph, digging deeper into Twitter analytics; for example, Who are your followers? Where are they located? When do they tweet? This can be used to gather Twitter information about any target organization or individual.
 
+Gather Information about a Target Website:
+- [Photon](https://github.com/s0md3v/Photon)
+   > Photon is a Python script used to crawl a given target URL to obtain information such as URLs (in-scope and out-of-scope), URLs with parameters, email addresses, social media accounts, files, secret keys and subdomains. The extracted information can further be exported in the JSON format.
+
+- [Central Ops](https://centralops.net/co/)
+    > CentralOps (centralops.net) is a free online network scanner that investigates domains and IP addresses, DNS records, traceroute, nslookup, whois searches, etc.
+
+- https://github.com/digininja/CeWL
+- https://whois.domaintools.com/
+
+DNS Footprinting
+- nslookup 
+- http://www.kloth.net/services/nslookup.php
+- https://dnsdumpster.com/
+- https://www.broadbandsearch.net/network-tools
+- https://www.yougetsignal.com/
+- https://securitytrails.com/
+
+Locate the Network Range
+
+- tracert   <-- windows 
+- traceroute    <-- linux
+
+Recon-ng:
+> Recon-ng is a web reconnaissance framework with independent modules and database interaction that provides an environment in which open-source web-based reconnaissance can be conducted. Here, we will use Recon-ng to perform network reconnaissance, gather personnel information, and gather target information from social networking sites.
+
+Maltego:
+> Maltego is a footprinting tool used to gather maximum information for the purpose of ethical hacking, computer forensics, and pentesting. It provides a library of transforms to discover data from open sources and visualizes that information in a graph format, suitable for link analysis and data mining. Maltego provides you with a graphical interface that makes seeing these relationships instant and accurate, and even making it possible to see hidden connections.
+
+OSRFramework:
+> OSRFramework is a set of libraries that are used to perform Open Source Intelligence tasks. They include references to many different applications related to username checking, DNS lookups, information leaks research, deep web search, regular expressions extraction, and many others. It also provides a way of making these queries graphically as well as several interfaces to interact with such as OSRFConsole or a Web interface.
+
+domainfy :
+- `domainfy -n [Domain Name] -t all `
+-   > -n: specifies a nickname or a list of nicknames to be checked. -t: specifies a list of top-level domains where nickname will be searched.
+
+searchfy:
+> check for the existence of a given user details on different social networking platforms such as Github, Instagram and Keyserverubuntu. Type searchfy -q "target user name or profile name"
+
+BillCipher:
+> BillCipher is an information gathering tool for a Website or IP address. Using this tool, you can gather information such as DNS Lookup, Whois lookup, GeoIP Lookup, Subnet Lookup, Port Scanner, Page Links, Zone Transfer, HTTP Header, etc. Here, we will use the BillCipher tool to footprint a target website URL.
+
+
+### OSINT Framework:
+
+- https://osintframework.com/
 
 
 
