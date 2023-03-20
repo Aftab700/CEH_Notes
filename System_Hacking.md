@@ -163,7 +163,93 @@ Discussed below are some of the remote code execution techniques:
 
 Hiding Files: Hiding files is the process of hiding malicious programs using methods such as rootkits, NTFS streams, and steganography techniques to prevent the malicious programs from being detected by protective applications such as Antivirus, Anti-malware, and Anti-spyware applications that may be installed on the target system. This helps in maintaining future access to the target system as a hidden malicious file provides direct access to the target system without the victim’s consent.
 
+Hide Files using NTFS Streams:
+- NTFS is a file system that stores any file with the help of two data streams, called NTFS data streams, along with file attributes. The first data stream stores the security descriptor for the file to be stored such as permissions; the second stores the data within a file. Alternate data streams are another type of named data stream that can be present within each file.
+- type c:\magic\calc.exe > c:\magic\readme.txt:calc.exe 
+  - This command will hide calc.exe inside the readme.txt.
+- mklink backdoor.exe readme.txt:calc.exe
 
+Hide Data using White Space Steganography
+- Steganography is the art and science of writing hidden messages in such a way that no one other than the intended recipient knows of the message’s existence. Steganography is classified based on the cover medium used to hide the file. A professional ethical hacker or penetration tester must have a sound knowledge of various steganography techniques.
+- Whitespace steganography is used to conceal messages in ASCII text by adding white spaces to the end of the lines. Because spaces and tabs are generally not visible in text viewers, the message is effectively hidden from casual observers. If the built-in encryption is used, the message cannot be read even if it is detected. To perform Whitespace steganography, various steganography tools such as snow are used. Snow is a program that conceals messages in text files by appending tabs and spaces to the end of lines, and that extracts hidden messages from files containing them. The user hides the data in the text file by appending sequences of up to seven spaces, interspersed with tabs.
+
+- https://darkside.com.au/snow/
+
+Image Steganography using OpenStego and StegOnline
+> Images are popular cover objects used for steganography. In image steganography, the user hides the information in image files of different formats such as .PNG, .JPG, or .BMP.
+
+OpenStego
+
+- OpenStego is an image steganography tool that hides data inside images. It is a Java-based application that supports password-based encryption of data for an additional layer of security. It uses the DES algorithm for data encryption, in conjunction with MD5 hashing to derive the DES key from the provided password.
+- https://www.openstego.com/
+
+StegOnline
+
+- StegOnline is a web-based, enhanced and open-source port of StegSolve. It can be used to browse through the 32 bit planes of the image, extract and embed data using LSB steganography techniques and hide images within other image bit planes.
+- https://stegonline.georgeom.net/upload
+
+Maintain Persistence by Abusing Boot or Logon Autostart Execution
+- The startup folder in Windows contains a list of application shortcuts that are executed when the Windows machine is booted. Injecting a malicious program into the startup folder causes the program to run when a user logins and helps you to maintain persistence or escalate privileges using the misconfigured startup folder.
+
+Maintain Domain Persistence by Exploiting Active Directory Objects
+- AdminSDHolder is an Active Directory container with the default security permissions, it is used as a template for AD accounts and groups, such as Domain Admins, Enterprise Admins etc. to protect them from unintentional modification of permissions.
+- If a user account is added into the access control list of AdminSDHolder, the user will acquire "GenericAll" permissions which is equivalent to domain administrators.
+
+- Import-Module ./powerview.psm1
+- https://github.com/PowerShellEmpire/PowerTools/blob/master/PowerView/powerview.ps1
+- Add-ObjectAcl -TargetADSprefix 'CN=AdminSDHolder,CN=System' -PrincipalSamAccountName Martin -Verbose -Rights All
+- Get-ObjectAcl -SamAccountName "Martin” -ResolveGUIDs
+
+Normally the changes in ACL will propagate automatically after 60 minutes, we can enter the following command to reduce the time interval of SDProp to 3 minutes.
+
+REG ADD HKLM\SYSTEM\CurrentControlSet\Services\NTDS\Parameters /V AdminSDProtectFrequency /T REG_DWORD /F /D 300
+
+Microsoft doesn’t recommend the modification of this setting, as this might cause performance issues in relation to LSASS process across the domain.
+
+- net group “Domain Admins” Martin /add /domain
+
+![image](https://user-images.githubusercontent.com/79740895/226434862-b1783509-80a7-4149-a9a2-7805fac14358.png)
+
+Privilege Escalation and Maintain Persistence using WMI
+- WMI (Windows Management Instrumentation) event subscription can be used to install event filters, providers, and bindings that execute code when a defined event occurs. It enables system administrators to perform tasks locally and remotely.
+
+- load powershell 
+  - load powershell module.
+- powershell_shell 
+  - open powershell in the console.
+- Import-Module ./WMI-Persistence.ps1
+- Install-Persistence -Trigger Startup -Payload “C:\Users\Administrator\Downloads\wmi.exe”
+
+Covert Channels using Covert_TCP
+- Networks use network access control permissions to permit or deny the traffic flowing through them. Tunneling is used to bypass the access control rules of firewalls, IDS, IPS, and web proxies to allow certain traffic. Covert channels can be created by inserting data into the unused fields of protocol headers. There are many unused or misused fields in TCP or IP over which data can be sent to bypass firewalls.
+
+- The Covert_TCP program manipulates the TCP/IP header of the data packets to send a file one byte at a time from any host to a destination. It can act like a server as well as a client and can be used to hide the data transmitted inside an IP header. This is useful when bypassing firewalls and sending data with legitimate-looking packets that contain no data for sniffers to analyze.
+
+Clearing Logs
+
+> To remain undetected, the intruders need to erase all evidence of security compromise from the system. To achieve this, they might modify or delete logs in the system using certain log-wiping utilities, thus removing all evidence of their presence.
+
+Various techniques used to clear the evidence of security compromise are as follow:
+
+- Disable Auditing: Disable the auditing features of the target system
+- Clearing Logs: Clears and deletes the system log entries corresponding to security compromise activities
+- Manipulating Logs: Manipulate logs in such a way that an intruder will not be caught in illegal actions
+- Covering Tracks on the Network: Use techniques such as reverse HTTP shells, reverse ICMP tunnels, DNS tunneling, and TCP parameters to cover tracks on the network.
+- Covering Tracks on the OS: Use NTFS streams to hide and cover malicious files in the target system
+- Deleting Files: Use command-line tools such as Cipher.exe to delete the data and prevent its future recovery
+- Disabling Windows Functionality: Disable Windows functionality such as last access timestamp, Hibernation, virtual memory, and system restore points to cover tracks
+
+Auditpol
+- Auditpol.exe is the command-line utility tool to change the Audit Security settings at the category and sub-category levels. You can use Auditpol to enable or disable security auditing on local or remote systems and to adjust the audit criteria for different categories of security events.
+- In real-time, the moment intruders gain administrative privileges, they disable auditing with the help of auditpol.exe. Once they complete their mission, they turn auditing back on by using the same tool (audit.exe).
+- auditpol /get /category:*
+  - view all the audit policies.
+- auditpol /set /category:"system","account logon" /success:enable /failure:enable 
+  - enable the audit policies.
+- auditpol /clear /y 
+  - clear the audit policies.
+
+To hide the user account type `net user Test /active:no` and press Enter. The Test account is removed from the list.
 
 
 
