@@ -112,6 +112,52 @@ hping3 -S [Target IP Address] -p 80 -c 5
 hping3 [Target IP Address] --flood
 - --flood: performs the TCP flooding.
 
+Scan a Target Network using Metasploit:
+> Metasploit Framework is a tool that provides information about security vulnerabilities in the target organization’s system, and aids in penetration testing and IDS signature development. It facilitates the tasks of attackers, exploit writers, and payload writers. A major advantage of the framework is the modular approach, that is, allowing the combination of any exploit with any payload.
+
+```
+service postgresql start
+msfdb init
+msfconsole 
+
+db_status 
+
+nmap -Pn -sS -A -oX Test 10.10.1.0/24
+
+db_import Test
+
+hosts 
+
+db_services 
+
+use auxiliary/scanner/portscan/syn
+
+set INTERFACE eth0
+set PORTS 80
+set RHOSTS 10.10.1.5-23
+set THREADS 50
+
+run
+
+
+use auxiliary/scanner/portscan/tcp
+
+set RHOSTS [Target IP Address]
+
+run
+
+
+use auxiliary/scanner/smb/smb_version
+
+set RHOSTS 10.10.1.5-23
+
+set THREADS 11
+
+```
+
+
+
+
 
 
 
