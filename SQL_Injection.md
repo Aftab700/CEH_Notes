@@ -23,5 +23,14 @@ sqlmap is an open-source penetration testing tool that automates the process of 
 You can use sqlmap to perform SQL injection on a target website using various techniques, including Boolean-based blind, time-based blind, error-based, UNION query-based, stacked queries, and out-of-band SQL injection.
 
 
+Detect SQL Injection Vulnerabilities using DSSS:
+- Damn Small SQLi Scanner (DSSS) is a fully functional SQL injection vulnerability scanner that supports GET and POST parameters. DSSS scans web applications for various SQL injection vulnerabilities.
+
+
+
+
+
+
+
 
 
