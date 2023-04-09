@@ -42,6 +42,12 @@ Crack a WPA2 Network using Aircrack-ng:
   - -w stands for wordlist; provide the path to a wordlist.
 
 
+------
+
+-> Decrypt wifi traffic: Wireshark > Edit > Preference > Protocol > IEEE 802.11 > add WPA keys(password)
+
+
+
 
 
 
