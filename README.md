@@ -1,4 +1,4 @@
-# Certified Ethical Hacker (modules/CEH) v12
+# Certified Ethical Hacker (CEH) v12
 
 <br>
 
