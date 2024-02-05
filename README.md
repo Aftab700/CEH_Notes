@@ -1,26 +1,26 @@
-# Certified Ethical Hacker (CEH) v12
+# Certified Ethical Hacker (modules/CEH) v12
 
 <br>
 
-- ## [Footprinting and Reconnaissance](Footprinting_and_Reconnaissance.md)
-- ## [Scanning Networks](Scanning_Networks.md)
-- ## [Enumeration](Enumeration.md)
-- ## [Vulnerability Analysis](Vulnerability_Analysis.md)
-- ## [System Hacking](System_Hacking.md)
-- ## [Malware Threats](Malware_Threats.md)
-- ## [Sniffing](Sniffing.md)
-- ## [Social Engineering](Social_Engineering.md)
-- ## [Denial-of-Service](Denial_of_Service.md)
-- ## [Session Hijacking](Session_Hijacking.md)
-- ## [Evading IDS, Firewalls, and Honeypots](Evading_IDS_Firewalls_and_Honeypots.md)
-- ## [Hacking Web Servers](Hacking_Web_Servers.md)
-- ## [Hacking Web Applications](Hacking_Web_Applications.md)
-- ## [SQL Injection](SQL_Injection.md)
-- ## [Hacking Wireless Networks](Hacking_Wireless_Networks.md)
-- ## [Hacking Mobile Platforms](Hacking_Mobile_Platforms.md)
-- ## [IoT and OT Hacking](IoT_and_OT_Hacking.md)
-- ## [Cloud Computing](Cloud_Computing.md)
-- ## [Cryptography](Cryptography.md)
+- ## [Footprinting and Reconnaissance](modules/Footprinting_and_Reconnaissance.md)
+- ## [Scanning Networks](modules/Scanning_Networks.md)
+- ## [Enumeration](modules/Enumeration.md)
+- ## [Vulnerability Analysis](modules/Vulnerability_Analysis.md)
+- ## [System Hacking](modules/System_Hacking.md)
+- ## [Malware Threats](modules/Malware_Threats.md)
+- ## [Sniffing](modules/Sniffing.md)
+- ## [Social Engineering](modules/Social_Engineering.md)
+- ## [Denial-of-Service](modules/Denial_of_Service.md)
+- ## [Session Hijacking](modules/Session_Hijacking.md)
+- ## [Evading IDS, Firewalls, and Honeypots](modules/Evading_IDS_Firewalls_and_Honeypots.md)
+- ## [Hacking Web Servers](modules/Hacking_Web_Servers.md)
+- ## [Hacking Web Applications](modules/Hacking_Web_Applications.md)
+- ## [SQL Injection](modules/SQL_Injection.md)
+- ## [Hacking Wireless Networks](modules/Hacking_Wireless_Networks.md)
+- ## [Hacking Mobile Platforms](modules/Hacking_Mobile_Platforms.md)
+- ## [IoT and OT Hacking](modules/IoT_and_OT_Hacking.md)
+- ## [Cloud Computing](modules/Cloud_Computing.md)
+- ## [Cryptography](modules/Cryptography.md)
 
 
 
