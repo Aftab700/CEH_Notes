@@ -23,6 +23,3 @@
 - ## [Cryptography](modules/Cryptography.md)
 
 
-
-
-![](https://aftab700.pythonanywhere.com/api/github/CEH_Notes)
