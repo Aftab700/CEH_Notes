@@ -22,11 +22,3 @@
 - ## [Cloud Computing](modules/Cloud_Computing.md)
 - ## [Cryptography](modules/Cryptography.md)
 
-
-<!-- GitAds-Verify: GEKHXAG9CRGUKB5MGMPDDQAO43U38YZ2 -->
-
----
-
-## GitAds Sponsored
-[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=aftab700/ceh_notes@github)](https://gitads.dev/v1/ad-track?source=aftab700/ceh_notes@github)
-
